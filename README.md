@@ -1,6 +1,8 @@
 # Verdela — Family Finance & Budget Management Platform
 
 [![CI Pipeline](https://github.com/zuhayr420/Money-Expense-Tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/zuhayr420/Money-Expense-Tracker/actions)
+[![CodeQL Security Scan](https://github.com/zuhayr420/Money-Expense-Tracker/actions/workflows/codeql.yml/badge.svg)](https://github.com/zuhayr420/Money-Expense-Tracker/actions)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-emerald.svg)](https://github.com/zuhayr420/Money-Expense-Tracker/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6.svg)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
