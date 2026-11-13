@@ -89,97 +89,98 @@ An enterprise-grade, high-performance family financial management platform built
 │   │   └── index.css             # Liquid glass CSS variables & Times New Roman typography
 │   ├── .env.example              # Frontend environment template
 │   ├── package.json              # Frontend scripts & dependencies
-│   ├── vercel.json               # SPA routing fallback for Vercel
 │   └── vite.config.ts            # Vite build & chunking configuration
 ├── .gitignore                    # Git exclusions
-├── Procfile                      # Production process manager definition
 └── README.md                     # Platform documentation
 ```
 
 ---
 
-## ⚡ Local Development Quickstart
+## 💻 Local Running Guide
+
+Follow these steps to run the full application locally on your computer.
 
 ### 1. Prerequisites
-- Python 3.10+
-- Node.js 18+ and npm
+Make sure you have installed on your machine:
+- **Python 3.10+**: [python.org](https://www.python.org/downloads/)
+- **Node.js 18+ & npm**: [nodejs.org](https://nodejs.org/)
 
-### 2. Backend Setup
-```bash
-cd backend
-pip install -r requirements.txt
-python app.py
-```
-> The API will start on `http://localhost:5000` with the health endpoint active at `http://localhost:5000/api/health`.
+---
 
-### 3. Frontend Setup
-```bash
-cd frontend
-npm install
-npm run dev
-```
-> The web interface will start on `http://localhost:5173`.
+### 2. Backend Setup (Flask API)
+
+1. Open your terminal and navigate to the `backend` folder:
+   ```bash
+   cd backend
+   ```
+
+2. *(Recommended)* Create and activate a Python virtual environment:
+   - **Windows (PowerShell)**:
+     ```powershell
+     python -m venv venv
+     .\venv\Scripts\Activate.ps1
+     ```
+   - **macOS / Linux**:
+     ```bash
+     python3 -m venv venv
+     source venv/bin/activate
+     ```
+
+3. Install backend dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. *(Optional)* Seed initial demo data (accounts, cards, budgets, family members):
+   ```bash
+   python seed_data.py
+   ```
+
+5. Start the backend server:
+   ```bash
+   python app.py
+   ```
+   > The API will be active at **`http://localhost:5000`** (Health check: `http://localhost:5000/api/health`).
+
+---
+
+### 3. Frontend Setup (React + Vite)
+
+1. Open a **new terminal window** and navigate to the `frontend` folder:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the Vite development server:
+   ```bash
+   npm run dev
+   ```
+   > The web app will launch at **`http://localhost:5173`**.
+
+---
+
+### 4. Demo Login Credentials
+
+If you ran `python seed_data.py`, you can log in immediately with:
+- **Username**: `demo`
+- **Password**: `demo123`
+
+*(Or simply click **Register** on the login page to create a brand new personal account).*
 
 ---
 
 ## 🧪 Running Automated Tests
 
-A comprehensive integration test suite is included in `backend/tests/test_api.py` covering authentication, accounts, balance calculations, budgets, goals, cards, and security headers:
+Run the backend unit and integration test suite:
 
 ```bash
 python -m unittest discover -s "backend/tests" -p "test_*.py"
 ```
-
----
-
-## 🚀 Production Deployment Guide
-
-### Architecture Overview
-The application can be deployed as:
-1. **Decoupled Architecture (Recommended)**:
-   - **Frontend**: Deployed to Vercel, Netlify, or Cloudflare Pages.
-   - **Backend**: Deployed to Render, Railway, Fly.io, or AWS EC2.
-   - **Database**: Managed PostgreSQL (Supabase, Neon, Render Postgres, Railway).
-2. **Monolith Architecture**:
-   - Backend serves built frontend static files from `frontend/dist`.
-
----
-
-### Deploying the Backend (e.g. Render / Railway / VPS)
-
-1. **Deploy to Render or Railway**:
-   - Connect your GitHub repository.
-   - Set **Root Directory** to `backend` (or project root with Procfile).
-   - Set **Build Command**: `pip install -r requirements.txt`
-   - Set **Start Command**: `gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT`
-2. **Set Environment Variables**:
-   ```ini
-   FLASK_ENV=production
-   FLASK_DEBUG=0
-   SECRET_KEY=use-a-strong-random-secret-key
-   JWT_SECRET_KEY=use-a-strong-random-jwt-key
-   DATABASE_URL=postgresql://user:password@host:5432/dbname
-   CORS_ORIGINS=https://your-frontend.vercel.app
-   ```
-3. **Database Migration to PostgreSQL**:
-   - Change `DATABASE_URL` from SQLite to your PostgreSQL connection string.
-   - The application automatically calls `db.create_all()` inside an application context on boot to initialize all indexed tables without manual migrations needed.
-
----
-
-### Deploying the Frontend (e.g. Vercel)
-
-1. **Import Repository on Vercel**:
-   - Set **Root Directory** to `frontend`.
-   - Set **Framework Preset** to `Vite`.
-   - Set **Build Command**: `npm run build`
-   - Set **Output Directory**: `dist`
-2. **Environment Variables**:
-   ```ini
-   VITE_API_BASE_URL=https://your-backend-api.onrender.com
-   ```
-3. **SPA Routing**:
-   - The included [`frontend/vercel.json`](file:///e:/Money%20Expense%20Tracker/frontend/vercel.json) ensures all client-side routes (`/transactions`, `/accounts`, `/budgets`, etc.) resolve cleanly to `index.html` without 404 errors.
 
 ---
 
@@ -192,6 +193,5 @@ The application can be deployed as:
   - `X-Frame-Options: SAMEORIGIN`
   - `X-XSS-Protection: 1; mode=block`
   - `Referrer-Policy: strict-origin-when-cross-origin`
-  - `Strict-Transport-Security: max-age=31536000; includeSubDomains` (production)
-- **Sanitized Secrets**: No hardcoded API keys or production database credentials in source code.
-- **Structured Error Handling**: Global error handlers for 400, 401, 403, 404, 405, 429, and 500 guarantee clean JSON responses and prevent stack-trace leakage.
+- **Sanitized Secrets**: No hardcoded API keys or sensitive credentials committed.
+- **Structured Error Handling**: Global error handlers for 400, 401, 403, 404, 405, 429, and 500 guarantee clean JSON responses.
