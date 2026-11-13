@@ -1,8 +1,10 @@
-from flask import Blueprint, request, jsonify, g
+from flask import Blueprint, request, jsonify, g, Response
 from models import db, Transaction, Account
 from utils.auth import token_required
 from datetime import datetime, date
 from sqlalchemy import func, and_
+import csv
+import io
 
 transaction_bp = Blueprint('transactions', __name__)
 
@@ -260,3 +262,39 @@ def get_transaction_summary():
         'net': float(month_income) - float(month_expense),
         'total_transactions': total_transactions
     }), 200
+
+
+@transaction_bp.route('/export', methods=['GET'])
+@token_required
+def export_transactions():
+    """Export user transactions as a CSV spreadsheet."""
+    txs = Transaction.query.filter_by(user_id=g.current_user.id).order_by(Transaction.date.desc()).all()
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['ID', 'Type', 'Description', 'Category', 'Amount', 'Date', 'Account', 'Family Member', 'Payment Method', 'Status'])
+
+    for t in txs:
+        account_name = t.account.name if t.account else ''
+        writer.writerow([
+            t.id,
+            t.type,
+            t.description,
+            t.category,
+            t.amount,
+            t.date.isoformat() if hasattr(t.date, 'isoformat') else str(t.date),
+            account_name,
+            t.family_member_name or '',
+            t.payment_method or '',
+            t.status
+        ])
+
+    csv_data = output.getvalue()
+    filename = f"transactions_{date.today().isoformat()}.csv"
+
+    return Response(
+        csv_data,
+        mimetype="text/csv",
+        headers={"Content-Disposition": f"attachment;filename={filename}"}
+    )
+
