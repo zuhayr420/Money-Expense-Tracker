@@ -10,6 +10,44 @@ An enterprise-grade, high-performance family financial management platform built
 
 ---
 
+## 📸 Application Interface & Previews
+
+### 1. Executive Dashboard Overview
+> *Holistic view of family net worth, live cash flow metrics, liquid card carousel, and recent transactions.*
+![Dashboard Overview](docs/screenshots/01_dashboard_overview.png)
+
+<br/>
+
+### 2. Vault Accounts & 3D Interactive Cards
+> *Multi-account liquidity balances with real-time card security locking and theme customization.*
+![Accounts & Cards](docs/screenshots/02_accounts_vault.png)
+
+<br/>
+
+### 3. Transactions Ledger & CSV Export
+> *Searchable transaction history with categorical filtering, member attribution, and one-click CSV export.*
+![Transactions Ledger](docs/screenshots/03_transactions_ledger.png)
+
+<br/>
+
+### 4. Categorical Budgets & Real-Time Tracking
+> *Dynamic progress bars with automatic 80% and 100% threshold safety warnings.*
+![Budgets & Utilization](docs/screenshots/04_budgets_spending.png)
+
+<br/>
+
+### 5. Milestone Savings Goals & Family Vault
+> *Target progression indicators, deposit history, and deadline tracking.*
+![Savings Goals](docs/screenshots/05_savings_goals.png)
+
+<br/>
+
+### 6. Visual Analytics & Intelligence Insights
+> *Luminous trend lines, category distribution charts, and automated cashflow insights.*
+![Visual Analytics & Insights](docs/screenshots/06_analytics_insights.png)
+
+---
+
 ## 🌟 Key Capabilities
 
 1. **Precision Balance & Vault Ledger**:
@@ -99,6 +137,8 @@ An enterprise-grade, high-performance family financial management platform built
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                # Automated GitHub Actions CI pipeline
+├── docs/
+│   └── screenshots/              # High-resolution application interface previews
 ├── .gitignore                    # Git exclusions
 ├── LICENSE                       # MIT Open Source License
 └── README.md                     # Platform documentation
