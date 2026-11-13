@@ -159,6 +159,10 @@ export const transactionsApi = {
     const res = await api.get<{ categories: string[] }>('/transactions/categories');
     return res.data.categories;
   },
+  exportCsv: async () => {
+    const res = await api.get('/transactions/export', { responseType: 'blob' });
+    return res.data;
+  },
 };
 
 export const budgetsApi = {

@@ -1,5 +1,11 @@
 # Verdela — Family Finance & Budget Management Platform
 
+[![CI Pipeline](https://github.com/zuhayr420/Money-Expense-Tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/zuhayr420/Money-Expense-Tracker/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-10b981.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6.svg)](https://www.typescriptlang.org/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev/)
+
 An enterprise-grade, high-performance family financial management platform built with **Python Flask**, **SQLAlchemy ORM**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and **Recharts**. Designed with a luxurious dark forest & liquid glass aesthetic, **Times New Roman** typography, and 120 FPS fluid physics.
 
 ---
@@ -90,7 +96,11 @@ An enterprise-grade, high-performance family financial management platform built
 │   ├── .env.example              # Frontend environment template
 │   ├── package.json              # Frontend scripts & dependencies
 │   └── vite.config.ts            # Vite build & chunking configuration
+├── .github/
+│   └── workflows/
+│       └── ci.yml                # Automated GitHub Actions CI pipeline
 ├── .gitignore                    # Git exclusions
+├── LICENSE                       # MIT Open Source License
 └── README.md                     # Platform documentation
 ```
 
@@ -195,3 +205,10 @@ python -m unittest discover -s "backend/tests" -p "test_*.py"
   - `Referrer-Policy: strict-origin-when-cross-origin`
 - **Sanitized Secrets**: No hardcoded API keys or sensitive credentials committed.
 - **Structured Error Handling**: Global error handlers for 400, 401, 403, 404, 405, 429, and 500 guarantee clean JSON responses.
+
+---
+
+## 📄 License
+
+This project is licensed under the terms of the [MIT License](LICENSE). Copyright (c) 2026 Zuhayr Md.
+

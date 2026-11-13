@@ -227,6 +227,34 @@ class FamilyFinanceTestCase(unittest.TestCase):
         self.assertEqual(lock_res.status_code, 200)
         self.assertTrue(lock_res.get_json()['is_locked'])
 
+    def test_csv_export(self):
+        _, headers = self.register_and_login()
+
+        # Create account & transaction
+        acc = self.client.post('/api/accounts', headers=headers, json={
+            'name': 'Export Test Wallet',
+            'account_type': 'cash',
+            'balance': 5000.0
+        }).get_json()['account']
+
+        self.client.post('/api/transactions', headers=headers, json={
+            'account_id': acc['id'],
+            'type': 'expense',
+            'category': 'Food',
+            'amount': 350.0,
+            'description': 'Coffee & Pastry',
+            'date': '2026-11-12'
+        })
+
+        # Test CSV export endpoint
+        res = self.client.get('/api/transactions/export', headers=headers)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.mimetype, 'text/csv')
+        csv_text = res.get_data(as_text=True)
+        self.assertIn('Coffee & Pastry', csv_text)
+        self.assertIn('Food', csv_text)
+        self.assertIn('350.0', csv_text)
+
     def test_security_headers_and_error_handling(self):
         # Check security headers
         res = self.client.get('/api/health')
