@@ -1,4 +1,4 @@
-# Verdela — Family Finance & Budget Management Platform
+# Money Expense Tracker (Verdela)
 
 [![CI Pipeline](https://github.com/zuhayr420/Money-Expense-Tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/zuhayr420/Money-Expense-Tracker/actions)
 [![CodeQL Security Scan](https://github.com/zuhayr420/Money-Expense-Tracker/actions/workflows/codeql.yml/badge.svg)](https://github.com/zuhayr420/Money-Expense-Tracker/actions)
@@ -8,249 +8,177 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev/)
 
-An enterprise-grade, high-performance family financial management platform built with **Python Flask**, **SQLAlchemy ORM**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and **Recharts**. Designed with a luxurious dark forest & liquid glass aesthetic, **Times New Roman** typography, and 120 FPS fluid physics.
+A full-stack personal and family financial management web app. It provides an all-in-one dashboard to track multiple accounts, organize income and expenses, set category budgets with warning thresholds, manage savings goals, and visualize spending trends.
 
 ---
 
-## 📸 Application Interface & Previews
+## Screenshots
 
-### 1. Executive Dashboard Overview
-> *Holistic view of family net worth, live cash flow metrics, liquid card carousel, and recent transactions.*
+### 1. Dashboard Overview
+Summary cards for net worth, cash flow, card carousel, and recent transactions.
 ![Dashboard Overview](docs/screenshots/01_dashboard_overview.png)
 
-<br/>
-
-### 2. Vault Accounts & 3D Interactive Cards
-> *Multi-account liquidity balances with real-time card security locking and theme customization.*
+### 2. Accounts & Cards
+Track savings, checking, and cash balances alongside interactive payment cards with one-click lock/unlock.
 ![Accounts & Cards](docs/screenshots/02_accounts_vault.png)
 
-<br/>
-
 ### 3. Transactions Ledger & CSV Export
-> *Searchable transaction history with categorical filtering, member attribution, and one-click CSV export.*
+Filter by category, date range, or family member, with quick CSV export support.
 ![Transactions Ledger](docs/screenshots/03_transactions_ledger.png)
 
-<br/>
-
-### 4. Categorical Budgets & Real-Time Tracking
-> *Dynamic progress bars with automatic 80% and 100% threshold safety warnings.*
+### 4. Budgets & Spending Limits
+Monthly category allocations with progress bars and automated 80% and 100% threshold indicators.
 ![Budgets & Utilization](docs/screenshots/04_budgets_spending.png)
 
-<br/>
-
-### 5. Milestone Savings Goals & Family Vault
-> *Target progression indicators, deposit history, and deadline tracking.*
+### 5. Savings Goals
+Set milestone targets, log periodic contributions, and track progress toward completion.
 ![Savings Goals](docs/screenshots/05_savings_goals.png)
 
-<br/>
-
-### 6. Visual Analytics & Intelligence Insights
-> *Luminous trend lines, category distribution charts, and automated cashflow insights.*
+### 6. Analytics & Spending Insights
+Breakdown charts and trend lines for monthly income, expenses, and category distributions.
 ![Visual Analytics & Insights](docs/screenshots/06_analytics_insights.png)
 
 ---
 
-## 🌟 Key Capabilities
+## Features
 
-1. **Precision Balance & Vault Ledger**:
-   - Aggregate liquidity tracking across Savings, Current, Cash, and Joint accounts.
-   - Dynamic real-time calculation of net worth, total assets, and credit liabilities.
-2. **Interactive 3D Liquid Glass Cards**:
-   - Multi-theme physical/virtual card management (Emerald, Obsidian, Royal Navy, Gold Prestige).
-   - Dynamic card number formatting, EMV chip depiction, contactless indicator, and one-click security locking.
-3. **Comprehensive Cash Flow & Budgeting**:
-   - Real-time income and expense ledger with multi-category filters and instant balance synchronization.
-   - Monthly category allocations with progressive utilization bars and automated threshold warnings at 80% and 100%.
-4. **Milestone Savings Goals**:
-   - Target amounts, target completion dates, and contribution history ledger.
-   - Automated status transitions to `completed` upon reaching targets.
-5. **Recurring Bills & Subscription Cadence**:
-   - Due date tracking, cadence management (monthly, weekly, yearly), and one-click paid toggling.
-6. **Multi-Member Family Vault**:
-   - Role-based family governance (Administrator, Member, Viewer).
-   - Individual member spending caps and aggregate family expenditure analysis.
-7. **Intelligence & Visual Analytics**:
-   - Luminous wave charts, monthly trend distributions, and spending breakdown.
-   - Multi-currency engine (₹ INR, $ USD, € EUR, £ GBP).
+- **Multi-Account Tracking**: Real-time balance calculations across savings, checking, credit, and cash accounts.
+- **Transaction Management**: Add, edit, categorize, and filter transactions. Export transaction logs directly to CSV.
+- **Budgeting Engine**: Set monthly limits per category with visual alerts when reaching 80% or 100% utilization.
+- **Savings Goals**: Track target amounts, completion deadlines, and historical contributions.
+- **Recurring Bills**: Manage recurring subscriptions and utility bills with due date reminders and status toggles.
+- **Family Vault**: Role-based access (admin, member) with individual monthly spending limits.
+- **Analytics & Visualizations**: Interactive Recharts graphs showing cash flow trends and category percentages.
+- **Multi-Currency Support**: Switch display currencies between INR (₹), USD ($), EUR (€), and GBP (£).
 
 ---
 
-## 🛠 Technology Stack
+## Tech Stack
 
-### Frontend:
-- **Framework**: React 19 with TypeScript
-- **Bundler & Tooling**: Vite 8 with Rolldown code-splitting
-- **Styling**: Tailwind CSS v4, custom Liquid Glass design system
-- **Animations & Physics**: Framer Motion (GPU-accelerated 120 FPS transitions)
-- **Visualizations**: Recharts
-- **Icons**: Lucide React
-- **HTTP Client**: Axios with auth interceptors and dynamic base URLs
-
-### Backend:
-- **Framework**: Python Flask 3.0
-- **Database & ORM**: SQLite / PostgreSQL via Flask-SQLAlchemy 3.1
-- **Security & Auth**: PyJWT, Flask-Bcrypt, Werkzeug password hashing
-- **Production Server**: Gunicorn (Linux) / Waitress (Cross-Platform)
-- **CORS**: Flask-CORS with origin whitelisting and credentials support
+- **Frontend**: React 19, TypeScript, Tailwind CSS v4, Framer Motion, Recharts, Lucide Icons, Axios, Vite
+- **Backend**: Python Flask 3.0, Flask-SQLAlchemy, Flask-CORS, PyJWT, Werkzeug password hashing
+- **Database**: SQLite (default local file)
+- **CI & Testing**: GitHub Actions, Pytest, CodeQL, Dependabot
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 ├── backend/
-│   ├── instance/
-│   │   └── family_finance.db     # SQLite local database
-│   ├── models/
-│   │   └── __init__.py           # SQLAlchemy relational data models & indices
-│   ├── routes/
-│   │   ├── account_routes.py     # Accounts and wallet management
-│   │   ├── analytics_routes.py   # Aggregations, charts, and insights
-│   │   ├── auth_routes.py        # Authentication & user profile
-│   │   ├── bill_routes.py        # Recurring bills & subscriptions
-│   │   ├── budget_routes.py      # Budget limits & spent calculations
-│   │   ├── card_routes.py        # Card management & locking
-│   │   ├── family_routes.py      # Family members, roles & limits
-│   │   ├── goal_routes.py        # Savings goals & contributions
-│   │   └── transaction_routes.py # Income/expense posting & pagination
-│   ├── tests/
-│   │   └── test_api.py           # Automated unit & integration tests
-│   ├── utils/
-│   │   └── auth.py               # JWT token verification middleware
-│   ├── .env.example              # Backend environment template
-│   ├── app.py                    # Flask application factory, CORS & security headers
-│   └── requirements.txt          # Python production dependencies
-├── frontend/
-│   ├── public/
-│   │   ├── favicon.svg           # Verdela brand mark
-│   │   ├── robots.txt            # Search engine directives
-│   │   └── sitemap.xml           # XML sitemap
-│   ├── src/
-│   │   ├── components/           # Sidebar, Header, Modals & UI primitives
-│   │   ├── context/              # Auth & Currency React Context
-│   │   ├── pages/                # Overview, Accounts, Transactions, Budgets, etc.
-│   │   ├── services/             # Axios API service layer
-│   │   ├── types/                # TypeScript interface definitions
-│   │   ├── App.tsx               # App router configuration
-│   │   └── index.css             # Liquid glass CSS variables & Times New Roman typography
-│   ├── .env.example              # Frontend environment template
-│   ├── package.json              # Frontend scripts & dependencies
-│   └── vite.config.ts            # Vite build & chunking configuration
-├── .github/
-│   └── workflows/
-│       └── ci.yml                # Automated GitHub Actions CI pipeline
+│   ├── models/                   # SQLAlchemy models (User, Account, Transaction, Budget, Goal, Bill)
+│   ├── routes/                   # Flask blueprints (auth, accounts, transactions, budgets, etc.)
+│   ├── tests/                    # Pytest integration & unit test suite
+│   ├── utils/                    # JWT authentication helper functions
+│   ├── .env.example              # Sample environment configuration
+│   ├── app.py                    # Flask application factory & CORS configuration
+│   ├── requirements.txt          # Python dependencies
+│   └── seed_data.py              # Sample data generator for quick testing
 ├── docs/
-│   └── screenshots/              # High-resolution application interface previews
-├── .gitignore                    # Git exclusions
-├── LICENSE                       # MIT Open Source License
-└── README.md                     # Platform documentation
+│   └── screenshots/              # Application UI previews
+├── frontend/
+│   ├── src/
+│   │   ├── components/           # Layout, header, sidebar, and modals
+│   │   ├── context/              # Auth and Currency React contexts
+│   │   ├── pages/                # Overview, Accounts, Transactions, Budgets, Goals, Insights
+│   │   ├── services/             # Axios API service layer
+│   │   └── types/                # TypeScript interface declarations
+│   ├── package.json              # NPM dependencies and scripts
+│   └── vite.config.ts            # Vite bundler configuration
+├── .github/
+│   ├── workflows/                # CI test pipeline & CodeQL security scans
+│   ├── ISSUE_TEMPLATE/           # Bug report and feature request templates
+│   └── dependabot.yml            # Automated dependency updates
+├── .gitignore                    # Exclusions (.env, node_modules, database files)
+├── LICENSE                       # MIT License
+├── pytest.ini                    # Pytest test configuration
+└── README.md                     # Documentation
 ```
 
 ---
 
-## 💻 Local Running Guide
+## Getting Started
 
-Follow these steps to run the full application locally on your computer.
+### Prerequisites
+- **Python 3.10+**
+- **Node.js 18+ & npm**
 
-### 1. Prerequisites
-Make sure you have installed on your machine:
-- **Python 3.10+**: [python.org](https://www.python.org/downloads/)
-- **Node.js 18+ & npm**: [nodejs.org](https://nodejs.org/)
+### 1. Clone the repository
+```bash
+git clone https://github.com/zuhayr420/Money-Expense-Tracker.git
+cd Money-Expense-Tracker
+```
 
----
+### 2. Backend Setup
+```bash
+cd backend
 
-### 2. Backend Setup (Flask API)
+# Create and activate virtual environment
+# Windows:
+python -m venv venv
+.\venv\Scripts\activate
 
-1. Open your terminal and navigate to the `backend` folder:
-   ```bash
-   cd backend
-   ```
+# macOS / Linux:
+# python3 -m venv venv
+# source venv/bin/activate
 
-2. *(Recommended)* Create and activate a Python virtual environment:
-   - **Windows (PowerShell)**:
-     ```powershell
-     python -m venv venv
-     .\venv\Scripts\Activate.ps1
-     ```
-   - **macOS / Linux**:
-     ```bash
-     python3 -m venv venv
-     source venv/bin/activate
-     ```
+# Install dependencies
+pip install -r requirements.txt
 
-3. Install backend dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Seed sample data (creates demo accounts, transactions, and budgets)
+python seed_data.py
 
-4. *(Optional)* Seed initial demo data (accounts, cards, budgets, family members):
-   ```bash
-   python seed_data.py
-   ```
+# Start the Flask API
+python app.py
+```
+The API server will run at `http://localhost:5000`.
 
-5. Start the backend server:
-   ```bash
-   python app.py
-   ```
-   > The API will be active at **`http://localhost:5000`** (Health check: `http://localhost:5000/api/health`).
+### 3. Frontend Setup
+Open a second terminal window:
+```bash
+cd frontend
 
----
+# Install packages
+npm install
 
-### 3. Frontend Setup (React + Vite)
+# Start the dev server
+npm run dev
+```
+Open your browser and navigate to `http://localhost:5173`.
 
-1. Open a **new terminal window** and navigate to the `frontend` folder:
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-   > The web app will launch at **`http://localhost:5173`**.
-
----
-
-### 4. Demo Login Credentials
-
-If you ran `python seed_data.py`, you can log in immediately with:
+### 4. Default Test Credentials
+If you seeded the sample data, you can sign in with:
 - **Username**: `demo`
 - **Password**: `demo123`
 
-*(Or simply click **Register** on the login page to create a brand new personal account).*
+You can also use the **Register** form on the login page to create a new local account.
 
 ---
 
-## 🧪 Running Automated Tests
+## Running Tests
 
-Run the backend unit and integration test suite:
-
+Run the backend test suite:
 ```bash
-python -m unittest discover -s "backend/tests" -p "test_*.py"
+pytest
+```
+
+Run frontend type-checking and production build:
+```bash
+cd frontend
+npm run build
 ```
 
 ---
 
-## 🔒 Security Hardening Summary
+## Security
 
-- **Hashed Passwords**: Password verification uses salted Bcrypt / Werkzeug secure hashing.
-- **JWT Protection**: Cryptographically signed tokens with expiration and user verification.
-- **Security Response Headers**: Injected via middleware:
-  - `X-Content-Type-Options: nosniff`
-  - `X-Frame-Options: SAMEORIGIN`
-  - `X-XSS-Protection: 1; mode=block`
-  - `Referrer-Policy: strict-origin-when-cross-origin`
-- **Sanitized Secrets**: No hardcoded API keys or sensitive credentials committed.
-- **Structured Error Handling**: Global error handlers for 400, 401, 403, 404, 405, 429, and 500 guarantee clean JSON responses.
+- Passwords hashed using Werkzeug / salted bcrypt hashing.
+- Endpoints protected with JWT bearer tokens.
+- Security headers configured (`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `X-XSS-Protection: 1; mode=block`).
+- Sensitive local configuration (`.env`) and local SQLite database files are excluded from Git via `.gitignore`.
 
 ---
 
-## 📄 License
+## License
 
-This project is licensed under the terms of the [MIT License](LICENSE). Copyright (c) 2026 Zuhayr Md.
-
+This project is licensed under the [MIT License](LICENSE).
