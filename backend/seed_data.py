@@ -282,3 +282,16 @@ def seed_database():
     print(f'   {len(budgets)} budget categories')
     print(f'   5 savings goals')
     print(f'   {len(bills)} bills/subscriptions')
+
+
+if __name__ == '__main__':
+    from app import app
+    with app.app_context():
+        db.create_all()
+        existing = User.query.filter_by(username='demo').first()
+        if existing:
+            print("Resetting and reseeding demo database...")
+            db.drop_all()
+            db.create_all()
+        seed_database()
+
